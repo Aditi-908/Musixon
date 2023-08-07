@@ -1,12 +1,56 @@
+
+
 "use client";
 
 import { Song } from "@/types";
-import useOnPlay from "@/hooks/useOnPlay";
+
 import SongItem from "@/components/SongItem";
+import { useCallback } from 'react';
+
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+
 
 interface PageContentProps {
   songs: Song[];
 }
+const particlesOptions = {
+  particles: {
+    number: {
+      value: 50,
+      density: {
+        enable: true,
+        value_area: 800,
+      },
+    },
+    size: {
+      value: 3,
+      random: true,
+    },
+    color: {
+      value: "#800080",
+    },
+    shape: {
+      type: "circle",
+    },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      random: true,
+      straight: false,
+      out_mode: "out",
+    },
+  },
+  interactivity: {
+    events: {
+      onhover: {
+        enable: true,
+        mode: "repulse",
+      },
+    },
+  },
+};
 
 const PageContent: React.FC<PageContentProps> = ({
   songs
@@ -20,8 +64,12 @@ const PageContent: React.FC<PageContentProps> = ({
       </div>
     )
   }
+ 
 
   return ( 
+    <div>
+   
+  
     <div 
       className="
         grid 
@@ -42,6 +90,7 @@ const PageContent: React.FC<PageContentProps> = ({
           data={item}
         />
       ))}
+    </div>
     </div>
   );
 }
