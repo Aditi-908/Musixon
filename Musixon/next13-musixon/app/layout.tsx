@@ -20,6 +20,13 @@ export const metadata = {
 
 export const revalidate = 0;
 
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const products = await getActiveProductsWithPrices();
+  const userSongs = await getSongsByUserId();
 
   return (
     <html lang="en">
