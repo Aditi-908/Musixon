@@ -38,8 +38,27 @@ const Header: React.FC<HeaderProps> = ({
 
     if (error) {
       toast.error(error.message);
+    };
+  
+
+  
+
+  const logout = () => {
+    setAuth({ user: null, token: "", refreshToken: "" });
+    localStorage.removeItem("auth");
+    navigate("/login");
+  };
+
+  const loggedIn =
+    auth.user !== null && auth.token !== "" && auth.refreshToken !== "";
+
+  const handlePostAdClick = () => {
+    if (loggedIn) {
+      navigate("/ad/create");
+    } else {
+      navigate("/login");
     }
-  }
+  };
 
   return (
     <div
